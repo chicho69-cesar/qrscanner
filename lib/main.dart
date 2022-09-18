@@ -17,6 +17,12 @@ class MyApp extends StatelessWidget {
         'home': (_) => const HomePage(),
         'map' : (_) => const MapPage(),
       },
+      theme: ThemeData(
+        primaryColor: Colors.deepPurple,
+        floatingActionButtonTheme: const FloatingActionButtonThemeData(backgroundColor: Colors.deepPurple),
+        appBarTheme: const AppBarTheme(backgroundColor: Colors.deepPurple),
+        bottomNavigationBarTheme: const  BottomNavigationBarThemeData(selectedItemColor: Colors.deepPurple)
+      ),
     );
   }
 }

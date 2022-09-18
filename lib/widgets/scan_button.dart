@@ -7,6 +7,7 @@ class ScanButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return FloatingActionButton(
       onPressed: (){},
+      elevation: 0,
       child: const Icon(Icons.filter_center_focus)
     );
   }
