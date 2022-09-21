@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 
 import 'package:qrscanner/pages/directions_page.dart';
 import 'package:qrscanner/pages/maps_history_page.dart';
+import 'package:qrscanner/providers/db_provider.dart';
 import 'package:qrscanner/providers/ui_provider.dart';
 import 'package:qrscanner/widgets/custom_navigatorbar.dart';
 import 'package:qrscanner/widgets/scan_button.dart';
@@ -40,6 +41,9 @@ class _HomePageBody extends StatelessWidget {
     final uiProvider = Provider.of<UIProvider>(context);
 
     final currentIndex = uiProvider.selectedMenuOption;
+
+    // todo: Temporal leer la base de datos
+    DBProvider.db.database;
 
     switch (currentIndex) {
       case 0:
