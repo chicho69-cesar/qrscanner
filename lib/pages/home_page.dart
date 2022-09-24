@@ -42,10 +42,6 @@ class _HomePageBody extends StatelessWidget {
 
     final currentIndex = uiProvider.selectedMenuOption;
 
-    // todo: Temporal leer la base de datos
-    /*DBProvider.db.getScanById(1)
-      .then((scan) => print(scan));*/
-
     switch (currentIndex) {
       case 0:
         return const MapsPage();
