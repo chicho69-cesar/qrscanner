@@ -99,4 +99,18 @@ class DBProvider {
       ? res.map((s) => ScanModel.fromJson(s)).toList()
       : [];
   }
+
+  Future<int> updateScan(ScanModel newScan) async {
+    final db = await database;
+
+    /* Para hacer modificaciones tambien existe el metodo rawUpdate donde se especifica todo el query */
+    final result = await db.update(
+      'Scans', 
+      newScan.toJson(), 
+      where: 'id = ?', 
+      whereArgs: [newScan.id]
+    );
+
+    return result;
+  }
 }
