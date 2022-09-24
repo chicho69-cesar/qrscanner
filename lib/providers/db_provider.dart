@@ -1,9 +1,12 @@
 import 'dart:io';
 
+// ignore: depend_on_referenced_packages
 import 'package:path/path.dart';
-
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
+
+import 'package:qrscanner/models/scan_model.dart';
+export 'package:qrscanner/models/scan_model.dart';
 
 class DBProvider {
   static Database? _database;
@@ -21,7 +24,6 @@ class DBProvider {
     // Path de donde almacenaremos la base de datos
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
     final path = join(documentsDirectory.path, 'ScansDB.db');
-    print(path);
 
     // Crear base de datos
     return await openDatabase(
@@ -38,5 +40,29 @@ class DBProvider {
         ''');
       }
     );
+  }
+
+  Future<int> newScanRaw(ScanModel newScan) async {
+    final id    = newScan.id;
+    final type  = newScan.type;
+    final value = newScan.value;
+
+    // Obtenemos la base de datos
+    final db = await database;
+
+    // Insertamos datos en la base de datos a traves de un query SQL
+    final result = await db.rawInsert('''
+      INSERT INTO Scans(id, type, value)
+      VALUES('$id', '$type', '$value');
+    ''');
+
+    return result;
+  }
+
+  Future<int> newScan(ScanModel newScan) async {
+    final db = await database;
+    // Insertamos un registro en la base de datos mediante el mapa del modelo que se genera a traves del toJson
+    final result = await db.insert('Scans', newScan.toJson());
+    return result;
   }
 }

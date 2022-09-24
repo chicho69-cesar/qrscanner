@@ -5,16 +5,16 @@ String scanModelToJson(ScanModel data) => json.encode(data.toJson());
 
 class ScanModel {
   ScanModel({
-    required this.id,
+    this.id,
     required this.type,
     required this.value,
   }) {
-    type = (type.contains('http'))
-      ? type = 'http'
-      : type = 'geo';
+    type = (value.contains('http'))
+      ? 'http'
+      : 'geo';
   }
 
-  int id;
+  int? id;
   String type;
   String value;
 
