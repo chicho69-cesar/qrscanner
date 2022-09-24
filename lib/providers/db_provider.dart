@@ -80,7 +80,7 @@ class DBProvider {
       : null;
   }
 
-  Future<List<ScanModel>> getAllScans(int id) async {
+  Future<List<ScanModel>> getAllScans() async {
     final db = await database;
     final res = await db.query('Scans');
 
